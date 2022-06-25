@@ -3,11 +3,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddCompanyContentComponent } from './add-company-content/add-company-content.component';
 
 @Component({
-  selector: 'app-add-company-model',
-  templateUrl: './add-company-model.component.html',
-  styleUrls: ['./add-company-model.component.css']
+  selector: 'app-add-company-modal',
+  templateUrl: './add-company-modal.component.html',
+  styleUrls: ['./add-company-modal.component.css']
 })
-export class AddCompanyModelComponent implements OnInit {
+export class AddCompanyModalComponent implements OnInit {
 
 
   ngOnInit(): void {
@@ -16,7 +16,10 @@ export class AddCompanyModelComponent implements OnInit {
   constructor(private modalService: NgbModal) {}
 
   open() {
-    const modalRef = this.modalService.open(AddCompanyContentComponent);
+    const modalRef = this.modalService.open(AddCompanyContentComponent,{
+      centered: true ,
+      size: 'l'
+    });
     modalRef.componentInstance.name = 'World';
   }
 }

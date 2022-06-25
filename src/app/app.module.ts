@@ -4,18 +4,23 @@ import { HttpClientModule } from '@angular/common/http'
 import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddStockComponent } from './add-stock/add-stock.component';
-import { AddCompanyModelComponent } from './add-company-model/add-company-model.component';
-import { AddCompanyContentComponent } from './add-company-model/add-company-content/add-company-content.component';
+
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddCompanyContentComponent } from './add-company-modal/add-company-content/add-company-content.component';
+import { AddCompanyModalComponent } from './add-company-modal/add-company-modal.component';
+import { AddStockModalComponent } from './add-stock-modal/add-stock-modal.component';
+import { AddStockDetailComponent } from './add-stock-modal/add-stock-detail/add-stock-detail.component';
+import { SearchStockComponent } from './search-stock/search-stock.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddStockComponent,
-    AddCompanyModelComponent,
     AddCompanyContentComponent,
+    AddCompanyModalComponent,
+    AddStockModalComponent,
+    AddStockDetailComponent,
+    SearchStockComponent
   ],
   imports: [
     BrowserModule,
