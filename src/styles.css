@@ -9,3 +9,30 @@ html, body {
    box-sizing: border-box;
    -webkit-overflow-scrolling: touch;
 }
+
+:root {
+   scroll-behavior: smooth;
+ }
+ 
+ body {
+   color: rgba(var(--color-primary-rgb), 1);
+ }
+ 
+ a {
+   color: var(--color-links);
+   text-decoration: none;
+ }
+ 
+ a:hover {
+   color: var(--color-links-hover);
+   text-decoration: none;
+ }
+ 
+ h1, h2, h3, h4, h5, h6 {
+   font-family: var(--font-primary);
+ }
+ 
+ #main {
+   margin-top: 90px;
+ }
+ 
