@@ -1,11 +1,52 @@
+<div class="modal-header">
+  <fa-icon [icon]="faIndustry"  class="m-2" ></fa-icon>
+  <h4 class="modal-title"> Add new  company </h4>
+  
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body row g-3 ">
 
- <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <p>Hello, {{name}}!</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-  </div>
+  <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+    <div class="form-group col-12">
+      <label>Company Name</label>
+      <input type="text" formControlName="companyName" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['companyName'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['companyName'].invalid "
+        class="invalid-feedback">
+        <div *ngIf="companyForm.controls['companyName']?.errors?.['required']">Company name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group col-12">
+      <label>Company Code</label>
+      <input type="text" formControlName="companyCode" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['companyCode'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['companyCode'].invalid "
+        class="invalid-feedback">
+        hello
+        <div *ngIf="companyForm.controls['companyCode'].errors?.['required']">Company code is required</div>
+        <div *ngIf="companyForm.controls['companyCode'].errors?.['minlength']"> Minimum company code should be 3 character</div>
+      </div>
+
+    </div>
+    <div class="form-group row my-5 ">
+      <button type="submit" class="btn btn-primary col-12 ">Register</button>
+      <!-- <button
+          type="button"
+          (click)="onReset()"
+          class="btn btn-warning float-right"
+        >
+          Reset
+        </button> -->
+    </div>
+  </form>
+  <!-- <p>Form value: {{ companyForm.value | json }}</p>
+  <p>Form status: {{ companyForm.status | json }}</p> -->
+
+
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
