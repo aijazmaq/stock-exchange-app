@@ -22,12 +22,11 @@ export class AddCompanyContentComponent implements OnInit {
     companyCode: ['', [Validators.required, Validators.minLength(3)]],
   });
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.companyForm.controls;
-  }
+
 
   onSubmit(): void {
     this.submitted = true;
+    // submit to the db and print toaster msg on successfull save
     console.log(this.companyForm)
     if (this.companyForm.invalid) {
       return;

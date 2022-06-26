@@ -35,4 +35,8 @@ html, body {
  #main {
    margin-top: 90px;
  }
+
  
+ .ag-header-cell-label {
+  justify-content: center;
+}

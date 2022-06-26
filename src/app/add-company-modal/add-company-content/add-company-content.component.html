@@ -23,7 +23,6 @@
         [ngClass]="{ 'is-invalid': submitted && companyForm.controls['companyCode'].invalid}" />
       <div *ngIf="submitted && companyForm.controls['companyCode'].invalid "
         class="invalid-feedback">
-        hello
         <div *ngIf="companyForm.controls['companyCode'].errors?.['required']">Company code is required</div>
         <div *ngIf="companyForm.controls['companyCode'].errors?.['minlength']"> Minimum company code should be 3 character</div>
       </div>

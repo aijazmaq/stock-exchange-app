@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
 
-export class company {
-    constructor(public price : string, public stockDate : DateTime){  }
+export class stock {
+    constructor(public price : number, public stockDate : DateTime){  }
 }

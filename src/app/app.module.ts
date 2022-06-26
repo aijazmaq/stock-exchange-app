@@ -11,7 +11,7 @@ import { AddCompanyModalComponent } from './add-company-modal/add-company-modal.
 import { AddStockModalComponent } from './add-stock-modal/add-stock-modal.component';
 import { AddStockDetailComponent } from './add-stock-modal/add-stock-detail/add-stock-detail.component';
 import { SearchStockComponent } from './search-stock/search-stock.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -31,7 +31,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AgGridModule,
     NgbModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    
     
   ],
   providers: [NgbActiveModal],

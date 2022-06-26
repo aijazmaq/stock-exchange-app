@@ -1,16 +1,58 @@
-<div class="row align-items-center">
-    <div class="col">
-     List All company dropdown
-    </div>
-    <div class="col">
-      comapny_Code label
-    </div>
-    <div class="col">
-      Search button
-    </div>
-  </div>
-  <div class="row align-items-end">
-    <div class="col">
-      create grid-COmponent 
-      </div>
-  </div>
+<div class="container mt-2 p-3 " style="border: 'black 1px solid'">
+    <form [formGroup]="formgrp" >
+        <div class="row align-items-center d-flex">
+            <div class="col-3">
+                <select class="custom-select"  formControlName="companyCode">
+                    <option selected value="">Choose company</option>
+                    <option *ngFor="let company of companies" [ngValue]="company.companyCode">
+                        {{ company.companyName }}
+                    </option>
+                </select>
+            </div>
+            <div class="d-flex justify-content-end col-9 " role="search">
+
+                <input type="text" class=" mx-2 col-3" placeholder="Company Code" disabled
+                    [value]="companyCode?.value">
+                <button class="btn btn-outline-success col-3" 
+                (click)="search()" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<div class="row align-items-end">
+    <div class="col stock-grid">
+    
+       <!-- AG Grid Angular Component -->
+       <ag-grid-angular
+       style="width: 100%; height: 100%"
+       class="ag-theme-alpine"
+       [columnDefs]="columnDefs"
+       [defaultColDef]="defaultColDef"
+       [rowData]="rowData"
+       [rowSelection]="'multiple'"
+       [animateRows]="true"
+       (gridReady)="onGridReady($event)"
+       (cellClicked)="onCellClicked($event)"
+       [overlayLoadingTemplate]="loadingTemplate"
+     ></ag-grid-angular>
+
+     <div class="row gridfooter">
+        <div class="col-3">
+            <span class="badge rounded-pill bg-light text-dark">AVG : {{avg}}</span>
+        </div>
+        <div class="col-3">
+            <span class="badge rounded-pill bg-light text-dark">MAX : {{max}}</span>
+        </div>
+        <div class="col-3">
+           <span class="badge rounded-pill bg-light text-dark">MIN {{min}}</span>
+        </div>
+        <div class="col-3 ">
+            <button class="btn  btn-secondary" style='width: 100%;' (click)="clearSelection()">Clear grid filter</button>
+        </div>
+     </div>
+       
+
+        </div>
+</div>

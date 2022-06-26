@@ -21,7 +21,6 @@ export class AddStockModalComponent implements OnInit {
         centered: true ,
         size: 'xl'
       });
-    modalRef.componentInstance.name = 'World';
   }
   
 }
