@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { faIndustry } from '@fortawesome/free-solid-svg-icons'
 import { company } from 'src/app/Models/company';
+import {PostService} from 'src/app/services/post.service'
 
 @Component({
   selector: 'app-add-company-content',
@@ -12,7 +13,7 @@ import { company } from 'src/app/Models/company';
 export class AddCompanyContentComponent implements OnInit {
   @Input() name:any;
   submitted = false;
-  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder){} 
+  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService){} 
 
   ngOnInit(): void {
   }
@@ -32,6 +33,8 @@ export class AddCompanyContentComponent implements OnInit {
       return;
     }
     console.log(JSON.stringify(this.companyForm.value, null, 2));
+    this.service.saveCompany(this.companyForm.value);
+
   }
 
 }
