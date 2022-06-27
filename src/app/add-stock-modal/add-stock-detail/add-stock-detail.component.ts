@@ -4,6 +4,7 @@ import { faBusinessTime } from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DateTime } from 'luxon';
 import { company } from 'src/app/Models/company';
+import {PostService} from 'src/app/services/post.service'
 
 @Component({
   selector: 'app-add-stock-detail',
@@ -16,7 +17,7 @@ export class AddStockDetailComponent implements OnInit {
   myInterval: any;
   curDateTime: DateTime = DateTime.local();
   displayDateTime: string = this.curDateTime.toLocaleString(DateTime.DATETIME_SHORT);
-  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder){} 
+  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService){} 
   
   ngOnInit() {
     this.curTimefunc()
@@ -55,6 +56,7 @@ export class AddStockDetailComponent implements OnInit {
       return;
     }
     console.log(JSON.stringify(this.stockForm.value, null, 2));
+    this.service.saveStock(this.stockForm.value);
   }
 
   companies :company[] = [
