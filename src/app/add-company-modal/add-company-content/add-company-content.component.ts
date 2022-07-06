@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { faIndustry } from '@fortawesome/free-solid-svg-icons'
 import { company } from 'src/app/Models/company';
 import {PostService} from 'src/app/services/post.service'
+import { AppToastService } from 'src/app/services/app-toast.service';
 
 @Component({
   selector: 'app-add-company-content',
@@ -13,7 +14,8 @@ import {PostService} from 'src/app/services/post.service'
 export class AddCompanyContentComponent implements OnInit {
   @Input() name:any;
   submitted = false;
-  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService){} 
+  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService,
+     public toastService: AppToastService){} 
 
   ngOnInit(): void {
   }
@@ -33,7 +35,10 @@ export class AddCompanyContentComponent implements OnInit {
       return;
     }
     console.log(JSON.stringify(this.companyForm.value, null, 2));
-    this.service.saveCompany(this.companyForm.value);
+    this.service.saveCompany(this.companyForm.value).subscribe(
+      x=>  this.toastService.showSuccess("company added succesfully"),
+      x=>  this.toastService.showError(x)
+    );
 
   }
 

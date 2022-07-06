@@ -21,6 +21,7 @@ export class PostService {
   }
 
   public saveCompany(requestData: any): Observable<any> {
+    console.log(requestData);
     return this.httpClient.post<any>(this.apiURL + '/saveCompany/', requestData,this.httpOptions)
     .pipe(
       catchError(this.errorHandler)

@@ -13,6 +13,7 @@ import { AddStockDetailComponent } from './add-stock-modal/add-stock-detail/add-
 import { SearchStockComponent } from './search-stock/search-stock.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastComponent } from './Infrastructure/toast/toast.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AddCompanyModalComponent,
     AddStockModalComponent,
     AddStockDetailComponent,
-    SearchStockComponent
+    SearchStockComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
