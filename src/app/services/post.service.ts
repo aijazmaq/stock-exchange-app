@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { company } from '../Models/company';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class PostService {
     })
   }
 
-  public saveCompany(requestData: any): Observable<any> {
+  public saveCompany(requestData: company): Observable<any> {
     console.log(requestData);
     return this.httpClient.post<any>(this.apiURL + '/saveCompany/', requestData,this.httpOptions)
     .pipe(
