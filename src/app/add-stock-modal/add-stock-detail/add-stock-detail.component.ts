@@ -17,11 +17,15 @@ export class AddStockDetailComponent implements OnInit {
   faBusinessTime = faBusinessTime;
   myInterval: any;
   curDateTime: DateTime = DateTime.local();
+  
+  companies :company[] = [];
   displayDateTime: string = this.curDateTime.toLocaleString(DateTime.DATETIME_SHORT);
   constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService,
     public toastService: AppToastService){} 
   
   ngOnInit() {
+    
+    this.service.getAllCompany().subscribe( x=> { this.companies = x});
     this.curTimefunc()
     this.myInterval = setInterval(() => {
       this.curTimefunc()
@@ -64,8 +68,5 @@ export class AddStockDetailComponent implements OnInit {
     );
   }
 
-  companies :company[] = [
-    new company("Company1", "C01", "Palash", 1000000, "https//google.com","BSE")
-  ]
 
 }
