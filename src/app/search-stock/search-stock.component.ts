@@ -29,7 +29,7 @@ export class SearchStockComponent implements OnInit {
   max:number =0;
   min:number =0;
   avg:number =0;
-
+  public domLayout: 'normal' | 'autoHeight' | 'print' = 'autoHeight';
 
 
 
@@ -120,6 +120,13 @@ export class SearchStockComponent implements OnInit {
   new stock(115, DateTime.fromObject({ year: 2020, month: 7, day: 7, hour: 11, minute: 45 })),
   new stock(122, DateTime.fromObject({ year: 2020, month: 8, day: 9, hour: 15, minute: 45 })),
   new stock(123, DateTime.fromObject({ year: 2021, month: 9, day: 18, hour: 14, minute: 20 })),
+  new stock(115, DateTime.fromObject({ year: 2020, month: 7, day: 7, hour: 11, minute: 45 })),
+  new stock(122, DateTime.fromObject({ year: 2020, month: 8, day: 9, hour: 15, minute: 45 })),
+  new stock(123, DateTime.fromObject({ year: 2021, month: 9, day: 18, hour: 14, minute: 20 })),
+  new stock(115, DateTime.fromObject({ year: 2020, month: 7, day: 7, hour: 11, minute: 45 })),
+  new stock(122, DateTime.fromObject({ year: 2020, month: 8, day: 9, hour: 15, minute: 45 })),
+  new stock(123, DateTime.fromObject({ year: 2021, month: 9, day: 18, hour: 14, minute: 20 })),
+ 
  
 ];
 }
