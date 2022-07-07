@@ -8,6 +8,7 @@ import { DateTime } from 'luxon';
 import { Observable, of } from 'rxjs';
 import { company } from '../Models/company';
 import { stock } from '../Models/stock';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-search-stock',
@@ -16,10 +17,10 @@ import { stock } from '../Models/stock';
 })
 export class SearchStockComponent implements OnInit {
 
- constructor( 
+ constructor( public service: PostService
  ) {}
   ngOnInit(): void {
- // get list of company handy for the drop down 
+    this.service.getAllCompany().subscribe( x=> { this.companies = x});
 
   }
   isSubmitted = false;  
@@ -30,6 +31,7 @@ export class SearchStockComponent implements OnInit {
   min:number =0;
   avg:number =0;
   public domLayout: 'normal' | 'autoHeight' | 'print' = 'autoHeight';
+  companies : company[] =[];
 
 
 
@@ -96,9 +98,9 @@ export class SearchStockComponent implements OnInit {
 
   }
   calculateStat() {
-    this.min = Math.min(...this.rowData.map(item => item.price));
-    this.max = Math.max(...this.rowData.map(item => item.price));
-    this.avg = this.avgCalculator(this.rowData.map(item => item.price));
+    this.min = Math.min(...this.rowData.map(item => item.price!));
+    this.max = Math.max(...this.rowData.map(item => item.price!));
+    this.avg = this.avgCalculator(this.rowData.map(item => item.price!));
    
  }
  avgCalculator(nums :number[]): number{
@@ -106,10 +108,6 @@ export class SearchStockComponent implements OnInit {
  }
 
  
-
- companies :company[] = [
-  new company("Company1", "C01", "Palash", 1000000, "https//google.com","BSE")
-]
 
  stocks= [
   new stock(100, DateTime.fromObject({ year: 2017, month: 7, day: 15, hour: 8, minute: 10})),

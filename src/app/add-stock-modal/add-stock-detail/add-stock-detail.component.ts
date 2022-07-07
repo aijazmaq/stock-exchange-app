@@ -1,9 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { faBusinessTime } from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DateTime } from 'luxon';
 import { company } from 'src/app/Models/company';
+import { stock } from 'src/app/Models/stock';
 import { AppToastService } from 'src/app/services/app-toast.service';
 import {PostService} from 'src/app/services/post.service'
 
@@ -46,7 +47,7 @@ export class AddStockDetailComponent implements OnInit {
 
     stockForm =  this.fb.group({
       companyCode :  ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.minLength(5),  Validators.pattern("^[0-9]*$")]],
+      stockPrice: ['', [Validators.required, Validators.minLength(5),  Validators.pattern("^[0-9]*$")]],
       stockDate: [ this.curDateTime]
   });
 
@@ -62,7 +63,7 @@ export class AddStockDetailComponent implements OnInit {
       return;
     }
     console.log(JSON.stringify(this.stockForm.value, null, 2));
-    this.service.saveStock(this.stockForm.value).subscribe(
+    this.service.saveStock(<stock>this.stockForm.value).subscribe(
       x=>  this.toastService.showSuccess("Stock added succesfully"),
       x=>  this.toastService.showError(x)
     );
