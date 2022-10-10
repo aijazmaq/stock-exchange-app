@@ -1,0 +1,9 @@
+POST https://apigatewayocelot.azurewebsites.net/api/v1.0/market/stock/add HTTP/1.1
+content-type: application/json
+
+{
+      "companyCode": "PAL",
+      "stockPrice": 0
+}
+
+

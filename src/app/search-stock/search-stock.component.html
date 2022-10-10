@@ -4,8 +4,8 @@
             <div class="col-3">
                 <select class="custom-select"  formControlName="companyCode">
                     <option selected value="">Choose company</option>
-                    <option *ngFor="let company of companies" [ngValue]="company.companyCode">
-                        {{ company.companyName }}
+                    <option *ngFor="let company of companies" [ngValue]="company.code">
+                        {{ company.name }}
                     </option>
                 </select>
             </div>
@@ -33,6 +33,7 @@
        [rowData]="rowData"
        [rowSelection]="'multiple'"
        [animateRows]="true"
+       [domLayout]="domLayout"
        (gridReady)="onGridReady($event)"
        (cellClicked)="onCellClicked($event)"
        [overlayLoadingTemplate]="loadingTemplate"
@@ -48,9 +49,9 @@
         <div class="col-3">
            <span class="badge rounded-pill bg-light text-dark">MIN {{min}}</span>
         </div>
-        <div class="col-3 ">
+        <!-- <div class="col-3 ">
             <button class="btn  btn-secondary" style='width: 100%;' (click)="clearSelection()">Clear grid filter</button>
-        </div>
+        </div> -->
      </div>
        
 

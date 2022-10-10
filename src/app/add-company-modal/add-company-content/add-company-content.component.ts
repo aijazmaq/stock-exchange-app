@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { faIndustry } from '@fortawesome/free-solid-svg-icons'
 import { company } from 'src/app/Models/company';
 import {PostService} from 'src/app/services/post.service'
+import { AppToastService } from 'src/app/services/app-toast.service';
 
 @Component({
   selector: 'app-add-company-content',
@@ -13,14 +14,19 @@ import {PostService} from 'src/app/services/post.service'
 export class AddCompanyContentComponent implements OnInit {
   @Input() name:any;
   submitted = false;
-  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService){} 
+  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService,
+     public toastService: AppToastService){} 
 
   ngOnInit(): void {
   }
     faIndustry = faIndustry;
     companyForm =  this.fb.group({
-    companyName: ['', [Validators.required, Validators.minLength(5)]],
-    companyCode: ['', [Validators.required, Validators.minLength(3)]],
+    name: ['', [Validators.required, Validators.minLength(5)]],
+    code: ['', [Validators.required, Validators.minLength(3)]],
+    ceoName: ['', [Validators.required, Validators.minLength(5)]],
+    turnOver: ['', [Validators.required, Validators.min(10000000)]],
+    website: ['', [Validators.required]],
+    stockExchange: ['', [Validators.required]],
   });
 
 
@@ -33,8 +39,10 @@ export class AddCompanyContentComponent implements OnInit {
       return;
     }
     console.log(JSON.stringify(this.companyForm.value, null, 2));
-    this.service.saveCompany(this.companyForm.value);
-
+    this.service.saveCompany(<company>this.companyForm.value).subscribe(
+      x=>  this.toastService.showSuccess("company added succesfully"),
+      x=>  this.toastService.showError(x)
+    );
   }
 
 }

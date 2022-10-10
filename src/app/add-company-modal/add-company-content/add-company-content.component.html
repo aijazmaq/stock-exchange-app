@@ -9,25 +9,67 @@
   <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
     <div class="form-group col-12">
       <label>Company Name</label>
-      <input type="text" formControlName="companyName" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['companyName'].invalid}" />
-      <div *ngIf="submitted && companyForm.controls['companyName'].invalid "
+      <input type="text" formControlName="name" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['name'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['name'].invalid "
         class="invalid-feedback">
-        <div *ngIf="companyForm.controls['companyName']?.errors?.['required']">Company name is required</div>
+        <div *ngIf="companyForm.controls['name']?.errors?.['required']">Company name is required</div>
       </div>
     </div>
 
     <div class="form-group col-12">
       <label>Company Code</label>
-      <input type="text" formControlName="companyCode" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['companyCode'].invalid}" />
-      <div *ngIf="submitted && companyForm.controls['companyCode'].invalid "
+      <input type="text" formControlName="code" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['code'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['code'].invalid "
         class="invalid-feedback">
-        <div *ngIf="companyForm.controls['companyCode'].errors?.['required']">Company code is required</div>
-        <div *ngIf="companyForm.controls['companyCode'].errors?.['minlength']"> Minimum company code should be 3 character</div>
+        <div *ngIf="companyForm.controls['code'].errors?.['required']">Company code is required</div>
+        <div *ngIf="companyForm.controls['code'].errors?.['minlength']"> Minimum company code should be 3 character</div>
       </div>
-
     </div>
+
+    <div class="form-group col-12">
+      <label>CEO Name</label>
+      <input type="text" formControlName="ceoName" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['ceoName'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['ceoName'].invalid "
+        class="invalid-feedback">
+        <div *ngIf="companyForm.controls['ceoName'].errors?.['required']">CEO name is required</div>
+        <div *ngIf="companyForm.controls['ceoName'].errors?.['minlength']"> Minimum CEO name be 3 character</div>
+      </div>
+    </div>
+
+    <div class="form-group col-12">
+      <label>Company TurnOver</label>
+      <input type="number" formControlName="turnOver" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['turnOver'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['turnOver'].invalid "
+        class="invalid-feedback">
+        <div *ngIf="companyForm.controls['turnOver'].errors?.['required']"> Company turn over worth is required</div>
+        <div *ngIf="companyForm.controls['turnOver'].errors?.['min']"> Minimum 10cr turn over worth of company can only be added </div>
+      </div>
+    </div>
+
+    <div class="form-group col-12">
+      <label>Website</label>
+      <input type="text" formControlName="website" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['website'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['website'].invalid "
+        class="invalid-feedback">
+        <div *ngIf="companyForm.controls['website'].errors?.['required']"> company official website is needed.</div>
+      </div>
+    </div>
+
+    <div class="form-group col-12">
+      <label>Stock-Exchange</label>
+      <input type="text" formControlName="stockExchange" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && companyForm.controls['stockExchange'].invalid}" />
+      <div *ngIf="submitted && companyForm.controls['stockExchange'].invalid "
+        class="invalid-feedback">
+        <div *ngIf="companyForm.controls['stockExchange'].errors?.['required']"> stock exchange is needed.</div>
+      </div>
+    </div>
+
     <div class="form-group row my-3 ">
       <button type="submit" class="btn btn-primary col-12 ">Register</button>
       <!-- <button

@@ -1,9 +1,11 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { faBusinessTime } from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DateTime } from 'luxon';
 import { company } from 'src/app/Models/company';
+import { stock } from 'src/app/Models/stock';
+import { AppToastService } from 'src/app/services/app-toast.service';
 import {PostService} from 'src/app/services/post.service'
 
 @Component({
@@ -16,10 +18,15 @@ export class AddStockDetailComponent implements OnInit {
   faBusinessTime = faBusinessTime;
   myInterval: any;
   curDateTime: DateTime = DateTime.local();
+  
+  companies :company[] = [];
   displayDateTime: string = this.curDateTime.toLocaleString(DateTime.DATETIME_SHORT);
-  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService){} 
+  constructor(public activeModal: NgbActiveModal, private fb :FormBuilder,public service:PostService,
+    public toastService: AppToastService){} 
   
   ngOnInit() {
+    
+    this.service.getAllCompany().subscribe( x=> { this.companies = x});
     this.curTimefunc()
     this.myInterval = setInterval(() => {
       this.curTimefunc()
@@ -40,7 +47,7 @@ export class AddStockDetailComponent implements OnInit {
 
     stockForm =  this.fb.group({
       companyCode :  ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.minLength(5),  Validators.pattern("^[0-9]*$")]],
+      stockPrice: ['', [Validators.required, Validators.minLength(5),  Validators.pattern("^[0-9]*$")]],
       stockDate: [ this.curDateTime]
   });
 
@@ -56,26 +63,11 @@ export class AddStockDetailComponent implements OnInit {
       return;
     }
     console.log(JSON.stringify(this.stockForm.value, null, 2));
-    this.service.saveStock(this.stockForm.value);
+    this.service.saveStock(<stock>this.stockForm.value).subscribe(
+      x=>  this.toastService.showSuccess("Stock added succesfully"),
+      x=>  this.toastService.showError(x)
+    );
   }
 
-  companies :company[] = [
-    new company('company1','c01'),
-    new company('company2','c02'),
-    new company('company3','c03'),
-    new company('company4','c04'),
-    new company('company5','c05'),
-    new company('company6','c06'),
-    new company('company7','c07'),
-    new company('company8','c08'),
-    new company('company9','c09'),
-    new company('company10','c10'),
-    new company('company11','c11'),
-    new company('company12','c12'),
-    new company('company13','c13'),
-    new company('company14','c14'),
-    new company('company15','c15'),
-    new company('company16','c16'),  
-  ]
 
 }

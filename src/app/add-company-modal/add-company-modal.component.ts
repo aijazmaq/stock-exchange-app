@@ -18,7 +18,7 @@ export class AddCompanyModalComponent implements OnInit {
   open() {
     const modalRef = this.modalService.open(AddCompanyContentComponent,{
       centered: true ,
-      size: 'l'
+      size: 'xl'
     });
     modalRef.componentInstance.name = 'World';
   }

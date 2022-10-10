@@ -14,8 +14,8 @@
           <div class="col-6 p-2">
               <select class="custom-select" formControlName="companyCode">
                   <option selected value="">Choose company</option>
-                  <option *ngFor="let company of companies" [ngValue]="company.companyCode">
-                      {{ company.companyName }}
+                  <option *ngFor="let company of companies" [ngValue]="company.code">
+                      {{ company.name }}
                   </option>
               </select>
               <div *ngIf="stockForm.controls['companyCode']?.status =='INVALID'"
@@ -30,11 +30,11 @@
           </div>
           <div class="col-12 p-2">
             <label for="priceForm">Stock price</label>
-            <input id="priceForm" type="number" formControlName="price" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && stockForm.controls['price'].invalid}" />
-            <div *ngIf="submitted && stockForm.controls['price'].invalid "
+            <input id="priceForm" type="number" formControlName="stockPrice" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && stockForm.controls['stockPrice'].invalid}" />
+            <div *ngIf="submitted && stockForm.controls['stockPrice'].invalid "
               class="invalid-feedback">
-              <div *ngIf="stockForm.controls['price']?.errors?.['required']">price of the stock is required</div>
+              <div *ngIf="stockForm.controls['stockPrice']?.errors?.['required']">price of the stock is required</div>
             </div>
           </div>
       
